@@ -1,0 +1,270 @@
+:root {
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 100%;
+    --color-background-sub-header: #fff;
+    --color-cor-oficial: #64428c;
+    --color-cor-oficial-secundaria: #8d6ab9;
+    --color-cor-botao-principal: #FF6F00;
+    /* Dark Mode  */
+    --bg: #fff;
+    --bg-panel: #ffffff;
+    --color-text: #64428c;
+    --color-headings: #000;
+    /* FIM -  Dark Mode  */
+    --color-cor-quadro-01: #64428c;
+    --color-cor-quadro-02: #0091BE;
+    --color-cor-quadro-03: #00C4BD;
+    --color-cor-quadro-04: #F66B00;
+    --color-cor-quadro-05: #64428c;
+    --color-cor-quadro-06: #00C3FF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg);
+}
+
+.cor_modal {
+    background-color: var(--bg);
+}
+
+/* Dark Mode  */
+.background_quadro {
+    background-color: var(--bg-panel);
+}
+
+
+.cor-do-texto {
+    color: var(--color-text);
+}
+
+.cor-do-texto-tabela {
+    color: var(--color-headings);
+}
+
+input#switch[type=checkbox] {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+label[for=switch] {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 52px;
+    height: 27px;
+    background: var(--color-cor-oficial-secundaria);
+    float: center;
+    border-radius: 100px;
+    position: relative;
+}
+
+    label[for=switch]::after {
+        content: '';
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 20px;
+        height: 20px;
+        background-color: white;
+        border-radius: 90px;
+        transition: 0.3s;
+    }
+
+input:checked + label[for=switch] {
+    background-color: var(--color-cor-oficial-secundaria);
+}
+
+    input:checked + label[for=switch]::after {
+        left: calc(100% - 5px);
+        transform: translateX(-100%);
+    }
+
+label[for=switch]:active:after {
+    width: 45px;
+}
+
+/* FIM - Dark Mode  */
+
+
+/* Topo do Painel */
+
+.bg_roxo {
+    background-color: var(--color-cor-oficial);
+    height: 80px;
+}
+
+
+
+
+
+/* INICIO de CSS dos Botões */
+
+.botao_topo {
+    border: 1px solid white;
+    border-radius: 5px;
+    color: black;
+    padding: 5px 20px;
+    font-size: 15px;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+}
+
+    .botao_topo:hover {
+        border: 1px solid white;
+        background-color: white;
+        border-radius: 5px;
+        color: black;
+        padding: 5px 20px;
+        font-size: 15px;
+        cursor: pointer;
+        color: #64428c;
+        text-decoration: none;
+    }
+
+
+
+
+
+/* Tabela - Formatação */
+
+.fonte_titulo_tabela {
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.fonte_listagem_tabela {
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+
+
+/* Tarja Branca da Empresa Logada  */
+
+#sub_header {
+    height: 50px;
+    margin-top: 80px;
+    display: flex;
+    background-color: var(--bg);
+}
+
+
+.texto_empresa {
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* FIM de Tarja Branca da Empresa Logada  */
+
+
+
+
+
+/* Banner  */
+
+.banner {
+    background-image: url("bg/bg_cotacao.jpg");
+    background-color: var(--color-cor-oficial);
+    height: 150px;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.banner-text {
+    font-family: 'Titillium Web', sans-serif;
+    text-align: left;
+    color: white;
+    height: 600px;
+    font-size: 44px;
+    line-height: 45px;
+}
+
+/* FIM - Banner  */
+
+
+/* Rodapé  */
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 0;
+}
+
+.footer_primario {
+    background-color: #64428C;
+    height: 80px;
+    line-height: 80px;
+    bottom: 0;
+}
+
+.footer_copyright {
+    bottom: 0;
+    height: 40px;
+    background-color: #50366E;
+    text-align: center;
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #fff;
+}
+
+/* FIM de Rodapé  */
+
+
+
+
+
+
+/* Formatação Mobile  */
+
+@media only screen and (max-width: 959px) {
+    /* Texto do Banner  */
+    span {
+        margin-top: 10px;
+        font-size: 30px;
+        line-height: 35px;
+    }
+
+    /* OCulta Caixa com Imagem Lateral */
+    #imagem_caixa {
+        display: none;
+    }
+
+
+
+    .botao_topo {
+        border: 1px solid white;
+        border-radius: 5px;
+        color: black;
+        padding: 2px 10px;
+        font-size: 15px;
+        cursor: pointer;
+        color: white;
+        text-decoration: none;
+    }
+
+        .botao_topo:hover {
+            border: 1px solid white;
+            background-color: white;
+            border-radius: 5px;
+            color: black;
+            padding: 2px 10px;
+            font-size: 15px;
+            cursor: pointer;
+            color: #64428c;
+            text-decoration: none;
+        }
+}
