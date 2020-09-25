@@ -330,7 +330,7 @@ namespace Autocom3_Cotacao
                         cmd.Parameters["msg"].Value = "";
                         cmd.Parameters["msg"].Direction = ParameterDirection.Output;
 
-                        cmd.ExecuteNonQuery();
+                        int retorno = cmd.ExecuteNonQuery();
                         trann.Commit();
                     }
                 }
@@ -654,8 +654,8 @@ namespace Autocom3_Cotacao
 
                             if (View.Text.Trim() == "S")
                             {
-                                lnkemfalta.CssClass = "btn btn-block btn-info";
-                                lnkemfalta.Text = "<i class='fa fa-cart-arrow-down' aria-hidden='true'></i>&nbsp;Em Estoque";
+                                lnkemfalta.CssClass = "btn btn-info";
+                                lnkemfalta.Text = "<i class='fad fa-box-check fa-2x'></i>";
                             }
 
 
@@ -669,8 +669,8 @@ namespace Autocom3_Cotacao
                                 if (View.Text.Trim() == "S")
                                 {
                                     lnkcotar.Enabled = false;
-                                    lnkemfalta.CssClass = "btn btn-block btn-info";
-                                    lnkemfalta.Text = "<i class='fa fa-cart-arrow-down' aria-hidden='true'></i>&nbsp;Em Estoque";
+                                    lnkemfalta.CssClass = "btn btn-info";
+                                    lnkemfalta.Text = "<i class='fad fa-box-check fa-2x'></i>";
                                 }
                                 else
                                 {
@@ -688,10 +688,10 @@ namespace Autocom3_Cotacao
 
         protected void gridDetalhes_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int index = int.Parse(e.CommandArgument.ToString()) % gridDetalhes.PageSize;
 
             if (e.CommandName.Equals("lnkCotar"))
             {
+                int index = int.Parse(e.CommandArgument.ToString()) % gridDetalhes.PageSize;
                 Label lbl;
                 GridViewRow linha = gridDetalhes.Rows[index];
 
@@ -711,11 +711,12 @@ namespace Autocom3_Cotacao
             }
             else if (e.CommandName.Equals("lnkEmFalta"))
             {
+                int index = int.Parse(e.CommandArgument.ToString()) % gridDetalhes.PageSize;
                 Label lbl;
-
                 GridViewRow linha = gridDetalhes.Rows[index];
-                hfcodprod.Value = linha.Cells[0].Text;
-                string codchave = linha.Cells[0].Text;
+                
+                hfcodprod.Value = Convert.ToString((gridDetalhes.Rows[index].FindControl("lblChave") as Label).Text.Trim()); 
+                string codchave = Convert.ToString((gridDetalhes.Rows[index].FindControl("lblChave") as Label).Text.Trim());
                 lbl = linha.FindControl("lblemfalta") as Label;
                 hfEmFalta.Value = lbl.Text;
 
@@ -881,8 +882,52 @@ namespace Autocom3_Cotacao
 
             executeUpdate_A(Session["codmatriz"].ToString(), Session["codbarras"].ToString(), Session["codfor"].ToString(), Convert.ToDecimal(txtValorFrete.Text), txtCondicaoPagamento.Text);
 
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Close", "closeFrete();", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "Close", "closeFrete();", true);
             return;
+
+        }
+
+        protected void gridDetalhes_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            
+            gridDetalhes.EditIndex = e.NewEditIndex;
+            BindGrid(Session["codmatriz"].ToString(), Session["codfor"].ToString(), Session["codbarras"].ToString());
+            ScriptManager.RegisterStartupScript(this, GetType(), "x", "selecione()",true);
+
+        }
+
+        protected void gridDetalhes_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+
+            gridDetalhes.EditIndex = -1;
+            BindGrid(Session["codmatriz"].ToString(), Session["codfor"].ToString(), Session["codbarras"].ToString());
+
+        }
+
+        protected void gridDetalhes_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+
+            string chave = Convert.ToString((gridDetalhes.Rows[e.RowIndex].FindControl("lblChave") as Label).Text.Trim());
+
+            string preco = (gridDetalhes.Rows[e.RowIndex].FindControl("txtcotacaopreco") as TextBox).Text.Trim(); 
+
+            if (preco.Length == 0)
+            {
+                preco = "0,00";
+            }
+
+            string dias = Convert.ToString((gridDetalhes.Rows[e.RowIndex].FindControl("txtcotacaodias") as TextBox).Text.Trim());
+
+            if (dias.Length == 0)
+            {
+                dias = "0";
+            }
+
+            executeUpdate_B(chave, Session["codbarras"].ToString(), Session["codfor"].ToString(), Session["codmatriz"].ToString(), Convert.ToDouble(preco) , Convert.ToInt32(dias));
+
+            gridDetalhes.EditIndex = -1;
+
+            BindGrid(Session["codmatriz"].ToString(), Session["codfor"].ToString(), Session["codbarras"].ToString());
 
         }
     }

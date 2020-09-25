@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="https://unpkg.com/@coreui/icons@2.0.0-beta.3/css/flag.min.css" />
 
 
+
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="fontawesome-pro/css/fontawesome.min.css" />
     <script defer src="fontawesome-pro/js/all.js"></script>
@@ -30,7 +32,7 @@
     <link rel="stylesheet" href="css/style.css" />
 
     <script src="js/jquery-2.1.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="js/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js" integrity="sha384-XEerZL0cuoUbHE4nZReLT7nx9gQrQreJekYhJD9WNWhH8nEW+0c5qq7aIo2Wl30J" crossorigin="anonymous"></script>
     <script src="js/jquery.mask.js"></script>
     <style>
@@ -100,7 +102,17 @@
     <script>
         $(document).ready(function () {
             $('.money').mask('#.##0,00', { reverse: true });
+            $('.money2').mask("#.##0,00", { reverse: true });
+            $('.numeros').mask("###000", { reverse: true });
+            $('.telefone').mask('(00) 0000-0000');
         });
+
+       $(function () {
+  $('.example-popover').popover({
+    container: 'body'
+  })
+})
+
     </script>
 </head>
 <body>
@@ -175,47 +187,47 @@
                         </Triggers>
                         <ContentTemplate>
 
-                           
-                                <div class="row">
 
-                                    <div class="col-12">
-                                        <div class="btn-group d-flex" role="group">
-                                            <asp:LinkButton runat="server" CommandName="cmdOutros" class="btn btn-roxo w-100" ID="lnkOutros" OnCommand="lnkOutros_Command"><i class="fad fa-users fa-2x" aria-hidden="true"></i>&nbsp;Outros Participantes</asp:LinkButton>
+                            <div class="row">
 
-                                            <% if ((Session["Encerrada"].ToString() == "sim") || (Session["Enviada"].ToString() == "sim"))
-                                                { %>
-                                            <a href="#" class="btn btn-block btn-roxo w-100" disabled="disabled"><i class="fad fa-edit fa-2x" aria-hidden="true"></i>&nbsp;Alterar Frete</a>
-                                            <% }
-                                                else
-                                                { %>
-                                            <asp:LinkButton runat="server" CommandName="cmdFrete" CssClass="btn btn-roxo w-100" ID="lnkFrete" OnCommand="lnkFrete_Command"><i class="fad fa-edit fa-2x" aria-hidden="true"></i>&nbsp;Alterar Frete</asp:LinkButton>
-                                            <% } %>
+                                <div class="col-12">
+                                    <div class="btn-group d-flex" role="group">
+                                        <asp:LinkButton runat="server" CommandName="cmdOutros" class="btn btn-roxo w-100" ID="lnkOutros" OnCommand="lnkOutros_Command"><i class="fad fa-users fa-2x" aria-hidden="true"></i>&nbsp;Outros Participantes</asp:LinkButton>
 
-
-                                            <% if ((Session["Encerrada"].ToString() == "sim") || (Session["Enviada"].ToString() == "sim"))
-                                                { %>
-                                            <a href="#" class="btn btn-block btn-roxo w-100" disabled="disabled"><i class="fad fa-calendar-edit fa-2x" aria-hidden="true"></i>&nbsp;Mesmo Prazo Em Todos</a>
-                                            <% }
-                                                else
-                                                { %>
-                                            <asp:LinkButton runat="server" CommandName="cmdMesmoPrazo" CssClass="btn btn-roxo w-100" ID="lnkBtMesmoPrazo" OnCommand="lnkBtMesmoPrazo_Command"><i class="fad fa-calendar-edit fa-2x" aria-hidden="true"></i>&nbsp;Mesmo Prazo Em Todos</asp:LinkButton>
-                                            <% } %>
+                                        <% if ((Session["Encerrada"].ToString() == "sim") || (Session["Enviada"].ToString() == "sim"))
+                                            { %>
+                                        <a href="#" class="btn btn-roxo w-100" disabled="disabled"><i class="fad fa-edit fa-2x" aria-hidden="true"></i>&nbsp;Alterar Frete</a>
+                                        <% }
+                                            else
+                                            { %>
+                                        <asp:LinkButton runat="server" CommandName="cmdFrete" CssClass="btn btn-roxo w-100" ID="lnkFrete" OnCommand="lnkFrete_Command"><i class="fad fa-edit fa-2x" aria-hidden="true"></i>&nbsp;Alterar Frete</asp:LinkButton>
+                                        <% } %>
 
 
-                                            <% if ((Session["Encerrada"].ToString() == "sim") || (Session["Enviada"].ToString() == "sim"))
-                                                { %>
-                                            <a href="#" class="btn btn-block btn-roxo w-100" style="color: White" disabled="disabled"><i class="fad fa-paper-plane fa-2x" aria-hidden="true"></i>&nbsp;Enviar Minha Cotação</a>
-                                            <% }
-                                                else
-                                                { %>
-                                            <a onclick="JavaScript:$('#janela').modal('show')" class="btn btn-roxo w-100" style="color: White" name="enviarcot" id="enviarcot"><i class="fad fa-paper-plane fa-2x" aria-hidden="true"></i>&nbsp;Enviar Minha Cotação</a>
-                                            <% } %>
-                                        </div>
+                                        <% if ((Session["Encerrada"].ToString() == "sim") || (Session["Enviada"].ToString() == "sim"))
+                                            { %>
+                                        <a href="#" class="btn btn-roxo w-100" disabled="disabled"><i class="fad fa-calendar-edit fa-2x" aria-hidden="true"></i>&nbsp;Mesmo Prazo Em Todos</a>
+                                        <% }
+                                            else
+                                            { %>
+                                        <asp:LinkButton runat="server" CommandName="cmdMesmoPrazo" CssClass="btn btn-roxo w-100" ID="lnkBtMesmoPrazo" OnCommand="lnkBtMesmoPrazo_Command"><i class="fad fa-calendar-edit fa-2x" aria-hidden="true"></i>&nbsp;Mesmo Prazo Em Todos</asp:LinkButton>
+                                        <% } %>
+
+
+                                        <% if ((Session["Encerrada"].ToString() == "sim") || (Session["Enviada"].ToString() == "sim"))
+                                            { %>
+                                        <a href="#" class="btn btn-block btn-roxo w-100" style="color: White" disabled="disabled"><i class="fad fa-paper-plane fa-2x" aria-hidden="true"></i>&nbsp;Enviar Minha Cotação</a>
+                                        <% }
+                                            else
+                                            { %>
+                                        <a onclick="JavaScript:$('#janela').modal('show')" class="btn btn-roxo w-100" style="color: White" name="enviarcot" id="enviarcot"><i class="fad fa-paper-plane fa-2x" aria-hidden="true"></i>&nbsp;Enviar Minha Cotação</a>
+                                        <% } %>
                                     </div>
-
-                                    <!-- fim da col -->
                                 </div>
-                          
+
+                                <!-- fim da col -->
+                            </div>
+
 
                         </ContentTemplate>
                     </asp:UpdatePanel>
@@ -249,128 +261,142 @@
                     </div>
 
                     <br />
-                    
-                        <div class="row">
 
-                            <div class="col-12">
+                    <div class="row">
 
-                                <div class="table-responsive table-condensed">
-                                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                                        <Triggers>
-                                        </Triggers>
-                                        <ContentTemplate>
-                                            <asp:GridView ID="gridDetalhes" runat="server" HorizontalAlign="Center" DataKeyNames="id"
-                                                AllowPaging="True" AllowSorting="True" CssClass="table"
-                                                Font-Size="Small" Style="width: 100%;" EnableModelValidation="True" AutoGenerateColumns="False" OnRowDataBound="gridDetalhes_RowDataBound" OnRowCommand="gridDetalhes_RowCommand" OnPageIndexChanging="gridDetalhes_PageIndexChanging">
-                                                <Columns>
-                                                    <asp:BoundField DataField="codchave" HeaderText="Chave Produto">
-                                                        <HeaderStyle CssClass="hideGridColumn" />
-                                                        <ItemStyle CssClass="hideGridColumn" />
-                                                    </asp:BoundField>
-                                                    <asp:TemplateField HeaderText="Produto">
-                                                        <ItemTemplate>
-                                                            <asp:Label ID="lblnomeproduto" runat="server" Text='<%# Bind("nomeproduto") %>'></asp:Label>
-                                                        </ItemTemplate>
-                                                        <HeaderStyle BackColor="#8D6A9A" CssClass="fonte_titulo_tabela" ForeColor="White" />
-                                                        <ItemStyle CssClass="fonte_listagem_tabela cor-do-texto-tabela" />
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Em Falta">
-                                                        <ItemTemplate>
-                                                            <asp:Label ID="lblemfalta" runat="server" Text='<%# Bind("emfalta") %>'></asp:Label>
-                                                        </ItemTemplate>
-                                                        <HeaderStyle CssClass="hideGridColumn" />
-                                                        <ItemStyle CssClass="hideGridColumn" />
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Quant.">
-                                                        <ItemTemplate>
-                                                            <asp:Label ID="lblquantidade" runat="server" Text='<%# Eval("quantidade","{0:0}") %>'></asp:Label>
-                                                        </ItemTemplate>
-                                                        <HeaderStyle BackColor="#8D6A9A" CssClass="fonte_titulo_tabela" ForeColor="White" />
-                                                        <ItemStyle CssClass="fonte_listagem_tabela cor-do-texto-tabela" />
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Preço">
-                                                        <ItemTemplate>
-                                                            <div style="overflow: auto; width: 100%">
-                                                                <asp:Label ID="lblcotacaopreco" runat="server" Text='<%# string.Format("{0:C}",Eval("cotacao_preco")) %>'></asp:Label>
-                                                            </div>
-                                                        </ItemTemplate>
-                                                        <HeaderStyle BackColor="#8D6A9A" CssClass="fonte_titulo_tabela" ForeColor="White" />
-                                                        <ItemStyle CssClass="fonte_listagem_tabela cor-do-texto-tabela" />
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Total">
-                                                        <ItemTemplate>
-                                                            <div style="overflow: auto; width: 100%">
-                                                                <asp:Label ID="lbltotal" runat="server" Text='<%# string.Format("{0:C}",Convert.ToDouble(Eval("cotacao_preco")) * Convert.ToInt32(Eval("quantidade")))  /* Convert.ToDouble(Convert.ToDouble(Eval("cotacao_preco")) * Convert.ToInt32(Eval("quantidade"))).ToString("####0.00", System.Globalization.CultureInfo.GetCultureInfo("pt-BR")) */%>'></asp:Label>
-                                                            </div>
-                                                        </ItemTemplate>
-                                                        <HeaderStyle BackColor="#8D6A9A" CssClass="fonte_titulo_tabela" ForeColor="White" />
-                                                        <ItemStyle CssClass="fonte_listagem_tabela cor-do-texto-tabela" />
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Prazo/Dias">
-                                                        <ItemTemplate>
-                                                            <asp:Label ID="lblcotacaodias" runat="server" Text='<%# Bind("cotacao_dias") %>'></asp:Label>
-                                                        </ItemTemplate>
-                                                        <HeaderStyle BackColor="#8D6A9A" CssClass="fonte_titulo_tabela" ForeColor="White" />
-                                                        <ItemStyle CssClass="fonte_listagem_tabela cor-do-texto-tabela" />
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Info. Adicionais">
-                                                        <ItemTemplate>
-                                                            <asp:Label ID="lblinfoadicionais" runat="server" Text='<%# string.Format("Und:{0}<br/>Cód:{1}",Eval("unidade"),Eval("codchave")) %>'></asp:Label>
-                                                        </ItemTemplate>
-                                                        <HeaderStyle BackColor="#8D6A9A" CssClass="fonte_titulo_tabela" ForeColor="White" />
-                                                        <ItemStyle CssClass="fonte_listagem_tabela cor-do-texto-tabela" />
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Opções">
-                                                        <ItemTemplate>
-                                                            <div style="overflow: auto; overflow-x: hidden; width: 100%">
-                                                                <asp:LinkButton ID="lnkCotar" runat="server" CssClass="btn btn-block btn-warning" CausesValidation="false" CommandName="lnkCotar" CommandArgument='<%# Container.DataItemIndex%>' Text="<i class='fad fa-thumbs-up fa-1x' aria-hidden='true'></i>&nbsp;Cotar Preço"></asp:LinkButton>
-                                                                <asp:LinkButton ID="lnkEmFalta" runat="server" CssClass="btn btn-block btn-danger" CausesValidation="false" CommandName="lnkEmFalta" CommandArgument='<%# Container.DataItemIndex%>' Text="<i class='fad fa-thumbs-down fa-1x' aria-hidden='true'></i>&nbsp;Em Falta"></asp:LinkButton>
-                                                            </div>
-                                                        </ItemTemplate>
-                                                        <HeaderStyle BackColor="#8D6A9A" CssClass="fonte_titlo_tabela" ForeColor="White" />
-                                                    </asp:TemplateField>
-                                                </Columns>
-                                                <PagerStyle CssClass="bs-pagination" />
-                                            </asp:GridView>
-                                        </ContentTemplate>
-                                    </asp:UpdatePanel>
-                                </div>
+                        <div class="col-12">
 
+                            <div class="table-responsive table-condensed">
+                                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                    <Triggers>
+                                    </Triggers>
+                                    <ContentTemplate>
+                                        <asp:GridView ID="gridDetalhes" runat="server" HorizontalAlign="Center" DataKeyNames="id"
+                                            AllowPaging="True" AllowSorting="True" CssClass="table"
+                                            Font-Size="Small" Style="width: 100%;" EnableModelValidation="True" AutoGenerateColumns="False" OnRowDataBound="gridDetalhes_RowDataBound" OnRowCommand="gridDetalhes_RowCommand" OnPageIndexChanging="gridDetalhes_PageIndexChanging" OnRowCancelingEdit="gridDetalhes_RowCancelingEdit" OnRowEditing="gridDetalhes_RowEditing" OnRowUpdating="gridDetalhes_RowUpdating">
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="Chave Produto">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblChave" runat="server" Text='<%# Eval("codchave") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle CssClass="hideGridColumn" />
+                                                    <ItemStyle CssClass="hideGridColumn" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Produto">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblnomeproduto" runat="server" Text='<%# Bind("nomeproduto") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle BackColor="#8D6A9A" CssClass="fonte_titulo_tabela" ForeColor="White" />
+                                                    <ItemStyle CssClass="fonte_listagem_tabela cor-do-texto-tabela" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Em Falta">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblemfalta" runat="server" Text='<%# Bind("emfalta") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle CssClass="hideGridColumn" />
+                                                    <ItemStyle CssClass="hideGridColumn" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Prazo/Dias">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblcotacaodias" runat="server" Text='<%# Bind("cotacao_dias") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle BackColor="#8D6A9A" CssClass="fonte_titulo_tabela" ForeColor="White" />
+                                                    <ItemStyle CssClass="fonte_listagem_tabela cor-do-texto-tabela" Width="80px" />
+                                                    <EditItemTemplate>
+                                                        <asp:TextBox ID="txtcotacaodias" runat="server" Text='<%# Eval("cotacao_dias") %>' CssClass="form-control numeros" />
+                                                    </EditItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Preço">
+                                                    <ItemTemplate>
+                                                        <div style="overflow: auto; width: 100%">
+                                                            <asp:Label ID="lblcotacaopreco" runat="server" Text='<%# string.Format("{0:C}", Eval("cotacao_preco")) %>'></asp:Label>
+                                                        </div>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle BackColor="#8D6A9A" CssClass="fonte_titulo_tabela" ForeColor="White" />
+                                                    <ItemStyle CssClass="fonte_listagem_tabela cor-do-texto-tabela" Width="180px" />
+                                                    <EditItemTemplate>
+                                                        <asp:TextBox ID="txtcotacaopreco" runat="server" Text='<%# Eval("cotacao_preco") %>' CssClass="form-control money" />
+                                                    </EditItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Quant.">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblquantidade" runat="server" Text='<%# Eval("quantidade", "{0:0}") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle BackColor="#8D6A9A" CssClass="fonte_titulo_tabela" ForeColor="White" />
+                                                    <ItemStyle CssClass="fonte_listagem_tabela cor-do-texto-tabela" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Total">
+                                                    <ItemTemplate>
+                                                        <div style="overflow: auto; width: 100%">
+                                                            <asp:Label ID="lbltotal" runat="server" Text='<%# string.Format("{0:C}", Convert.ToDouble(Eval("cotacao_preco")) * Convert.ToInt32(Eval("quantidade")))  /* Convert.ToDouble(Convert.ToDouble(Eval("cotacao_preco")) * Convert.ToInt32(Eval("quantidade"))).ToString("####0.00", System.Globalization.CultureInfo.GetCultureInfo("pt-BR")) */%>'></asp:Label>
+                                                        </div>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle BackColor="#8D6A9A" CssClass="fonte_titulo_tabela" ForeColor="White" />
+                                                    <ItemStyle CssClass="fonte_listagem_tabela cor-do-texto-tabela" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Info. Adicionais">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblinfoadicionais" runat="server" Text='<%# string.Format("Und:{0}<br/>Cód:{1}", Eval("unidade"), Eval("codchave")) %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle BackColor="#8D6A9A" CssClass="fonte_titulo_tabela" ForeColor="White" />
+                                                    <ItemStyle CssClass="fonte_listagem_tabela cor-do-texto-tabela" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Opções">
+                                                    <ItemTemplate>
+                                                        <%--<div style="overflow: auto; overflow-x: hidden; width: 100%">--%>
+                                                        <asp:LinkButton ID="lnkCotar" runat="server" CssClass="btn btn-warning" CausesValidation="false" CommandName="Edit" CommandArgument='<%# Container.DataItemIndex%>' Text="<i class='fad fa-thumbs-up fa-2x' aria-hidden='true'></i>" data-toggle="popover" data-placement="top" title="Editar prazo e preço do item."></asp:LinkButton>
+                                                        <asp:LinkButton ID="lnkEmFalta" runat="server" CssClass="btn btn-danger" CausesValidation="false" CommandName="lnkEmFalta" CommandArgument='<%# Container.DataItemIndex%>' Text="<i class='fad fa-thumbs-down fa-2x' aria-hidden='true'></i>" data-toggle="popover" data-placement="top" title="Informar a falta do item no momento."></asp:LinkButton>
+                                                        <%-- </div>--%>
+                                                    </ItemTemplate>
+                                                    <EditItemTemplate>
+                                                        <asp:LinkButton ID="lnkSave" runat="server" CssClass="btn btn-success" CausesValidation="false" CommandName="Update" Text="<i class='fad fa-save fa-2x'></i>" data-toggle="popover" data-placement="top" title="Salvar o novo prazo e valor do item."></asp:LinkButton>
+                                                        <asp:LinkButton ID="lnkCancel" runat="server" CssClass="btn btn-danger" CausesValidation="false" CommandName="Cancel" Text="<i class='fad fa-window-close fa-2x'></i>" data-toggle="popover" data-placement="top" title="Cancelar."></asp:LinkButton>
+                                                    </EditItemTemplate>
+                                                    <HeaderStyle BackColor="#8D6A9A" CssClass="fonte_titlo_tabela" ForeColor="White" />
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="150px" />
+                                                </asp:TemplateField>
+                                            </Columns>
+                                            <PagerStyle CssClass="bs-pagination" />
+                                        </asp:GridView>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
                             </div>
+
                         </div>
-                        <div class="row">
-                            <div class="col-4">
-                                <% if (Session["Encerrada"].ToString() == "sim")
-                                    { %>
-                                <div class="alert alert-danger" role="alert">
-                                    <h4><i class="fad fa-exclamation-triangle fa-1x"></i>&nbsp;Atenção</h4>
-                                    <p>Cotação já finalizada.</p>
-                                </div>
-                                <% }
-                                    else
-                                    { %>
-                                <% if (Session["Enviada"].ToString() == "não")
-                                    { %>
-                                <div class="alert alert-warning" role="alert">
-                                    <h4><i class="fad fa-exclamation-triangle fa-1x"></i>&nbsp;Atenção</h4>
-                                    <p>Sua cotação ainda não foi enviada ao comprador.</p>
-                                </div>
-                                <% }
-                                    else
-                                    { %>
-                                <div class="alert alert-info" role="alert">
-                                    <h4><i class="fad fa-exclamation-triangle fa-1x"></i>&nbsp;Atenção</h4>
-                                    <p>Esta cotação já foi enviada ao comprador.</p>
-                                </div>
-                                <% } %>
-                                <% } %>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <% if (Session["Encerrada"].ToString() == "sim")
+                                { %>
+                            <div class="alert alert-danger" role="alert">
+                                <h4><i class="fad fa-exclamation-triangle fa-1x"></i>&nbsp;Atenção</h4>
+                                <p>Cotação já finalizada.</p>
                             </div>
-                            <div class="col-3">
+                            <% }
+                                else
+                                { %>
+                            <% if (Session["Enviada"].ToString() == "não")
+                                { %>
+                            <div class="alert alert-warning" role="alert">
+                                <h4><i class="fad fa-exclamation-triangle fa-1x"></i>&nbsp;Atenção</h4>
+                                <p>Sua cotação ainda não foi enviada ao comprador.</p>
                             </div>
-                            <div class="col-3">
+                            <% }
+                                else
+                                { %>
+                            <div class="alert alert-info" role="alert">
+                                <h4><i class="fad fa-exclamation-triangle fa-1x"></i>&nbsp;Atenção</h4>
+                                <p>Esta cotação já foi enviada ao comprador.</p>
                             </div>
-                            <div class="col-2">&nbsp;</div>
+                            <% } %>
+                            <% } %>
                         </div>
+                        <div class="col-3">
+                        </div>
+                        <div class="col-3">
+                        </div>
+                        <div class="col-2">&nbsp;</div>
+                    </div>
                 </div>
 
             </div>
@@ -394,7 +420,7 @@
                                             <tr>
                                                 <td class="cor-do-texto">Produto:</td>
                                                 <td class="cor-do-texto">
-                                                    <asp:Label ID="lblproduto" runat="server" ></asp:Label>
+                                                    <asp:Label ID="lblproduto" runat="server"></asp:Label>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -763,11 +789,41 @@
 
                 }
 
+                function selecione() {
+                  <%--  $get('<%= FindControl("txtcotacaodias").ClientID %>').focus();
+                    $get('<%= FindControl("txtcotacaodias").ClientID %>').select();--%>
+
+                    //var table = document.getElementById("gridDetalhes");
+
+                    //if (table.rows.length > 0) {
+                    //    //loop the gridview table
+                    //    for (var i = 1; i < table.rows.length; i++) {
+                    //        //get all the input elements
+                    //        var inputs = table.rows[i].getElementsByTagName("input");
+                    //        for (var j = 0; j < inputs.length; j++) {
+                    //            //get the textbox1
+                    //            if (inputs[j].id.indexOf("txtcotacaodias") > -1) {
+                    //                inputs[j].focus();
+                    //                inputs[j].select();
+                    //                break;
+                    //            }
+
+                    //        }
+
+                    //    }
+                    //}
+
+
+                };
+
                <%-- $('#divFrete').on('click', '.btn-warning', function () {
                     var value =  $('#<%=txtFrete.ClientID%>').val();
                     $('.txtValorFrete').val(value);
                     $('#myModal').modal('hide');
                 });--%>
+
+
+                
 
             </script>
 

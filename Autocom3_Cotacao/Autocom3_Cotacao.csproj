@@ -332,6 +332,7 @@
     <Content Include="fontawesome-pro\webfonts\fa-solid-900.woff2" />
     <Content Include="img\legendas.psd" />
     <Content Include="js\modo_escuro.js" />
+    <Content Include="js\popper.min.js" />
     <Content Include="login_assets\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
     <Content Include="login_assets\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
     <Content Include="login_assets\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />

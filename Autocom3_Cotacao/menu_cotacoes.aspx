@@ -119,10 +119,6 @@
             </div>
 
             <div class="col-md-12">
-                <%--<div class="card-header">
-                    <h2 class="card-title">
-                        <img src="img/legendas.png" height="35px" alt="" /></h2>
-                </div>--%>
                 <div class="container-fluid mt-2">
                     <div class="row">
                         <div class="col-3">
